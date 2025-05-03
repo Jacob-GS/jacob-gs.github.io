@@ -1,13 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jacob's Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
 <body class="bg-gray-100 text-gray-800 font-sans">
 
   <header class="bg-white shadow p-6">
-    <img src="res/HeaderImage.jpg" class="w-full h-96 object-cover">
-    <h1 class="text-3xl font-bold text-center mt-6">My Projects</h1>
+    <img src="res\HeaderImage.jpg" class="w-full h-96 object-cover">
+    <h1 class="text-3xl font-bold text-center">My Projects</h1>
   </header>
 
-  <!-- Flex container holding sidebar and main content -->
   <div class="flex max-w-6xl mx-auto p-6 gap-6">
-    
     <!-- Sidebar -->
     <aside class="w-48 flex-shrink-0 bg-white p-4 shadow rounded-lg text-center">
       <img src="res/profile.jpg" alt="Headshot" class="w-24 h-24 rounded-lg mx-auto mb-3 object-cover">
@@ -21,24 +28,29 @@
       </div>
     </aside>
 
-    <!-- Project list inside main -->
-    <main class="flex-1 grid gap-6">
+  <main class="max-w-4xl mx-auto p-6">
+    <div class="grid gap-6">
+      <!-- PCompiler Project -->
       <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
         <h2 class="text-2xl font-semibold mb-2">Java-based Compiler</h2>
-        <p class="mb-4">A compiler for a self defined language written in java. It features a LL(1) parser, AST construction, semantic analyzer, and code generator.</p>
+        <p class="mb-4">A compiler for a self defined language written in java. It features a LL(1) parser, AST construction, semantic analyzer, and code generator. </p>
         <a href="https://github.com/Jacob-GS/UniCompiler" target="_blank" class="text-blue-600 hover:underline">View on GitHub →</a>
       </div>
 
+      <!-- Project 2 -->
       <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
         <h2 class="text-2xl font-semibold mb-2">Project Two</h2>
         <p class="mb-4">Another cool project description goes here.</p>
         <a href="https://github.com/yourusername/project2" target="_blank" class="text-blue-600 hover:underline">View on GitHub →</a>
       </div>
-    </main>
-  </div>
+
+      <!-- Add more projects as needed -->
+    </div>
+  </main>
 
   <footer class="text-center text-sm text-gray-500 p-4 mt-8">
     © 2025 Jacob Strubelt
   </footer>
 
 </body>
+</html>
