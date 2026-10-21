@@ -1,52 +1,277 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jacob's Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 text-gray-800 font-sans">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Personal Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky identity rail on the left, experience, projects, skills and education scrolling on the right; one column on phones. Single ivory and lavender look. */
+:root {
+  --bg: #fbf8ef;
+  --surface: #f3eee0;
+  --fg: #231f33;
+  --muted: #625c75;
+  --line: #ded6c2;
+  --lav: #b9a7ee;
+  --lav-soft: #e7e0fa;
+  --lav-ink: #5a40b4;
+  --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
 
-    <header class="bg-white shadow p-6">
-      <img src="res/HeaderImage.jpg" class="w-full h-96 object-cover">
-      <h1 class="text-3xl font-bold text-center mt-6">My Projects</h1>
-    </header>
-  
-    <div class="flex max-w-6xl mx-auto p-6 gap-6">
-      <!-- Sidebar -->
-      <aside class="w-48 flex-shrink-0 bg-white p-4 shadow rounded-lg text-center">
-        <img src="res/profile.jpg" alt="Headshot" class="w-24 h-24 rounded-lg mx-auto mb-3 object-cover">
-        <h2 class="text-lg font-semibold">Jacob Strubelt</h2>
-        <p class="text-sm text-gray-600 mb-3">Your role or tagline</p>
-        <div class="text-xs text-gray-700 space-y-1">
-          <p>📧 jacob.strubelt@outlook.com</p>
-          <p>📍 St. Louis, MO</p>
-          <p>🔗 <a href="https://github.com/Jacob-GS" class="text-blue-600 hover:underline">GitHub</a></p>
-          <p>💼 <a href=https://www.linkedin.com/in/jacob-strubelt" class="text-blue-600 hover:underline">LinkedIn</a></p>
-        </div>
-      </aside>
-  
-      <!-- Project List -->
-      <main class="flex-1 grid gap-6">
-        <!-- Project 1 -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h2 class="text-2xl font-semibold mb-2">Java-based Compiler</h2>
-          <p class="mb-4">A compiler for a self defined language written in java. It features a LL(1) parser, AST construction, semantic analyzer, and code generator.</p>
-          <a href="https://github.com/Jacob-GS/UniCompiler" target="_blank" class="text-blue-600 hover:underline">View on GitHub →</a>
-        </div>
-  
-        <!-- Project 2 -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h2 class="text-2xl font-semibold mb-2">Android Password Manager</h2>
-          <p class="mb-4">A Password manager created using kotlin and jetpack compose.</p>
-          <a href="https://github.com/Jacob-GS/PassswordManager" target="_blank" class="text-blue-600 hover:underline">View on GitHub →</a>
-        </div>
-      </main>
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-block: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--lav-ink); outline-offset: 3px; border-radius: 2px; }
+::selection { background: var(--lav); color: var(--fg); }
+
+.shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: 72px;
+  padding-block: 56px 72px;
+}
+
+/* Rail */
+.rail { position: sticky; top: 32px; align-self: start; display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+.rail h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin: 0;
+  text-wrap: balance;
+}
+.role { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--lav-ink); letter-spacing: 0.02em; margin: 14px 0 0; }
+.bio { margin: 0; max-width: 36ch; }
+.nav { display: flex; flex-direction: column; font-family: var(--font-mono); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.nav a { text-decoration: none; color: var(--muted); padding: 7px 0; border-bottom: 1px solid var(--line); }
+.nav a:hover { color: var(--lav-ink); border-bottom-color: var(--lav); }
+.contact { display: flex; flex-direction: column; gap: 10px; font-family: var(--font-mono); font-size: 0.8125rem; }
+.contact .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.contact .addr { user-select: all; overflow-wrap: anywhere; min-width: 0; }
+.contact .label { color: var(--muted); width: 3.5em; flex: none; }
+.btn {
+  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.04em;
+  background: var(--lav-soft); color: var(--lav-ink); border: 1px solid var(--lav); padding: 3px 10px; cursor: pointer; border-radius: 3px;
+}
+.btn:hover { background: var(--lav); color: var(--fg); }
+.contact .loc { color: var(--muted); }
+
+/* Sections */
+main { min-width: 0; display: flex; flex-direction: column; gap: 72px; }
+.sec-head { display: flex; align-items: baseline; gap: 16px; border-bottom: 1px solid var(--fg); padding-bottom: 10px; margin-bottom: 28px; }
+.sec-head h2 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; margin: 0; }
+.sec-head .tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; margin-left: auto; }
+
+/* Experience */
+.job { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 8px 28px; }
+.dates { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); padding-top: 4px; }
+.job h3, .edu h3 { margin: 0; font-family: var(--font-display); font-size: 1.375rem; letter-spacing: -0.01em; line-height: 1.2; }
+.org { color: var(--muted); font-size: 0.9375rem; margin: 4px 0 16px; }
+.stats { display: flex; gap: 12px; flex-wrap: wrap; margin: 0 0 20px; padding: 0; list-style: none; }
+.stats li { background: var(--lav-soft); border: 1px solid var(--lav); border-radius: 4px; padding: 10px 16px; min-width: 150px; flex: 1 1 150px; max-width: 220px; }
+.stats b { display: block; font-family: var(--font-display); font-size: 1.875rem; line-height: 1.1; letter-spacing: -0.02em; color: var(--lav-ink); font-variant-numeric: tabular-nums; }
+.stats span { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+ul.pts { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 8px; max-width: 64ch; }
+ul.pts li::marker { color: var(--lav-ink); }
+
+/* Projects */
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.project { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 22px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.project h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; margin: 0; }
+.project p { margin: 0; color: var(--muted); font-size: 0.9375rem; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 4px; }
+.tags span { font-family: var(--font-mono); font-size: 0.75rem; background: var(--lav-soft); color: var(--lav-ink); padding: 2px 9px; border-radius: 999px; }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 32px; }
+.skill-group h3 { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--lav-ink); margin: 0 0 10px; font-weight: 500; }
+.skill-group ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-group li { font-size: 0.875rem; border: 1px solid var(--line); background: var(--surface); padding: 2px 10px; border-radius: 3px; }
+
+/* Education */
+.edu { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 8px 28px; }
+.edu .org { margin-bottom: 12px; }
+.course { font-size: 0.9375rem; color: var(--muted); margin: 14px 0 0; max-width: 64ch; }
+.course b { color: var(--fg); font-weight: 500; }
+
+footer { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 16px; }
+
+@media (max-width: 860px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 48px; padding-block: 32px 56px; }
+  .rail { position: static; }
+  .nav { flex-direction: row; flex-wrap: wrap; gap: 18px; }
+  .nav a { border-bottom: 0; padding: 0; }
+}
+@media (max-width: 600px) {
+  .projects, .skills { grid-template-columns: minmax(0, 1fr); }
+  .job, .edu { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .stats li { max-width: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  .nav a, .btn { transition: color 0.15s, border-color 0.15s, background 0.15s; }
+}
+</style>
+
+<div class="shell">
+  <header class="rail">
+    <div>
+      <h1>Jacob Strubelt</h1>
+      <p class="role">IT support and cloud administration</p>
     </div>
-  
-    <footer class="text-center text-sm text-gray-500 p-4 mt-8">
-      © 2025 Jacob Strubelt
+    <p class="bio">IT Support Specialist | Driven by curiosity and a passion for problem-solving, I enjoy troubleshooting complex technical issues, improving operational efficiency, and building solutions that make work easier. Currently focused on expanding my knowledge of Microsoft 365, automation, identity management, and IT operations while continuing to learn and adapt to new technologies.</p>
+    <nav class="nav" aria-label="Sections">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+    </nav>
+    <div class="contact" id="contact">
+      <div class="row">
+        <span class="label">Email</span>
+        <span class="addr" id="email">jacob.strubelt@outlook.com</span>
+        <button class="btn" type="button" data-copy="email">Copy</button>
+      </div>
+      <div class="row">
+        <span class="label">Phone</span>
+        <span class="addr" id="phone">(314) 703-8843</span>
+        <button class="btn" type="button" data-copy="phone">Copy</button>
+      </div>
+      <div class="loc">St. Louis, MO</div>
+    </div>
+  </header>
+
+  <main>
+    <section id="experience" aria-labelledby="exp-h">
+      <div class="sec-head">
+        <h2 id="exp-h">Experience</h2>
+        <span class="tag">Current role</span>
+      </div>
+      <div class="job">
+        <div class="dates">Dec 2025 to now</div>
+        <div>
+          <h3>IT Support Specialist</h3>
+          <p class="org">Dobbs Tire &amp; Auto Centers, St. Louis, MO</p>
+          <ul class="stats" aria-label="Scale of support">
+            <li><b>2,000+</b><span>associates supported</span></li>
+            <li><b>170+</b><span>locations</span></li>
+          </ul>
+          <ul class="pts">
+            <li>Manage the employee lifecycle, conditional access and mailbox permissions in a hybrid cloud and on-premises environment using Microsoft Entra ID, Active Directory, Intune, Office 365 and Exchange.</li>
+            <li>Resolve software and hardware issues for associates across all locations, with remote and on-site support.</li>
+            <li>Created and maintain an enterprise-wide SharePoint intranet that gives employees easier access to information and replaces paper processes with digital forms and workflows.</li>
+            <li>Streamline onboarding and offboarding with Power Automate flows and PowerShell scripts.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="proj-h">
+      <div class="sec-head">
+        <h2 id="proj-h">Projects</h2>
+        <span class="tag">Personal and coursework</span>
+      </div>
+      <div class="projects">
+        <article class="project">
+          <h3>Java-Based Compiler</h3>
+          <p>A compiler for a custom-defined language. It includes an LL(1) parser, abstract syntax tree construction, a semantic analyzer and a code generator.</p>
+          <div class="tags"><span>Java</span><span>LL(1) parsing</span><span>AST</span><span>Code generation</span></div>
+        </article>
+        <article class="project">
+          <h3>Android Password Manager</h3>
+          <p>A secure password manager built in Kotlin with Jetpack Compose. It supports biometric login and stores passwords locally with AES encryption.</p>
+          <div class="tags"><span>Kotlin</span><span>Jetpack Compose</span><span>AES</span><span>Biometrics</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-h">
+      <div class="sec-head">
+        <h2 id="skills-h">Technical skills</h2>
+      </div>
+      <div class="skills">
+        <div class="skill-group">
+          <h3>Microsoft 365 and cloud</h3>
+          <ul>
+            <li>Entra ID</li><li>Intune</li><li>Exchange</li><li>SharePoint</li><li>Teams</li><li>Identity and access management</li><li>Mobile device management</li><li>Microsoft Graph API</li><li>Exchange Online API</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Security and networking</h3>
+          <ul>
+            <li>Endpoint security</li><li>Conditional access</li><li>Security monitoring</li><li>Incident response</li><li>Wireshark</li><li>Nmap</li><li>TCP/IP</li><li>DNS</li><li>DHCP</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Programming and scripting</h3>
+          <ul>
+            <li>PowerShell</li><li>Python</li><li>Bash</li><li>Java</li><li>C</li><li>SQL</li><li>HTML</li><li>CSS</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Tools and technologies</h3>
+          <ul>
+            <li>Active Directory</li><li>Group Policy</li><li>Power Automate</li><li>Git</li><li>Jetpack Compose</li><li>Android development</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" aria-labelledby="edu-h">
+      <div class="sec-head">
+        <h2 id="edu-h">Education</h2>
+      </div>
+      <div class="edu">
+        <div class="dates">May 2025</div>
+        <div>
+          <h3>B.S. in Computer Science</h3>
+          <p class="org">University of Missouri, St. Louis</p>
+          <ul class="pts">
+            <li>Undergraduate Cyber Security Certificate</li>
+          </ul>
+          <p class="course"><b>Coursework:</b> Computer Networking, Cyber Security, Web Development, Operating Systems, Data Structures and Algorithms, Object Oriented Programming</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>Jacob Strubelt</span>
+      <span>St. Louis, MO</span>
     </footer>
-  
-  </body>
+  </main>
+</div>
+
+<script>
+(function () {
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    var target = document.getElementById(btn.getAttribute('data-copy'));
+    btn.addEventListener('click', function () {
+      var reset = function (t) { btn.textContent = t; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); };
+      var fallback = function () {
+        var r = document.createRange(); r.selectNodeContents(target);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        reset('Selected');
+      };
+      try { navigator.clipboard.writeText(target.textContent).then(function () { reset('Copied'); }, fallback); } catch (e) { fallback(); }
+    });
+  });
+})();
+</script>
+
+</body></html>
